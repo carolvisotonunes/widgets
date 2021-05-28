@@ -2,7 +2,10 @@ import React from 'react';
 
 const Link = ({ className, href, children }) => {
   const onClick = (event) => {
-    event.preventDefault();//prevent to reload all the page content
+    event.preventDefault();//prevent to reload  the full page
+    window.history.pushState({},'',href);
+    const navEvent = new PopStateEvent('popstate');
+    window.dispatchEvent(navEvent);//communicate over to those root components that URl has just changed
   };
 
   return (
